@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<meta name="robots" content="noindex">
+<html>
+<head>
+<meta name="description" content="weather api data">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
+  
+  <title>weather api data</title>
+<style id="jsbin-css">
+@font-face {
+  font-family: "Dosis-Book";
+  src: url("fonts/Dosis-Book.woff") format('woff');
+}
+html,body{
+  background-color: #000;
+  color: #fff;
+
+}
+body{
+  margin: 20px;
+    font-family: "Dosis-Book";
+}
+
+#wrapper {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+
+}
+.flex-container{
+
+/*  -webkit-flex-direction: row;  Safari 
+  flex-direction:         row;*/
+  -webkit-justify-content: center; /* Safari */
+  justify-content:         center;
+  -webkit-align-items: center;  Safari 
+  align-items:         center;
+}
+span.icon {
+
+}
+.currenttime {
+font-size:20px;
+}
+.place {
+font-size:40px;
+}
+.temp {
+font-size:80px;
+}
+ul {
+  list-style:none;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+ <div class="flex-container"><span id="icon" class="icon"></span></div>
+ <div class="flex-container">
+<ul>
+  <li>
+    <span id="currenttime" class="currenttime">12:00</span>
+  </li>
+  <li>
+    <span id="here" class="place"></span>
+  </li>
+  <li>
+    <span id="temp" class="temp"></span>
+    <span>℃</span>
+    </li>
+  </ul>
+</div>
+  </div>
+<script id="jsbin-javascript">
+// ---
+
+$.ajax({
+  url: "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651b71a3982edfcfb47a2e1852a84b",
+  cache: false,
+  success:function (weatherdata){
+// img insert
+
+var img = document.createElement('img');
+img.src = "img/"+weatherdata.weather[0].icon+".png";
+// img.src = "http://openweathermap.org/img/w/"+weatherdata.weather[0].icon+".png";
+img.alt = weatherdata.weather[0].main;
+document.getElementById('icon').appendChild(img);
+
+// ＝摂氏＋＝K
+document.getElementById('temp').innerHTML = Math.floor(weatherdata.main.temp - 273.15);
+
+// 位置
+document.getElementById('here').innerHTML = weatherdata.name;
+
+}
+});
+
+
+// 現在時刻
+setInterval(function(){
+var date = new Date();
+var time ;
+  time = date.getFullYear()+'.';
+  time += (date.getMonth()+1)+'.';
+  time += date.getDay()+'\n';
+  time += date.getHours()+':';
+  time += date.getMinutes()+':';
+  time += date.getSeconds(); 
+ document.getElementById('currenttime').innerHTML = time;
+},1000);
+
+
+</script>
+</body>
+</html>
