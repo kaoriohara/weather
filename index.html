@@ -82,6 +82,7 @@ ul {
 $.ajax({
   url: "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651b71a3982edfcfb47a2e1852a84b",
   cache: false,
+    dataType:'jsonp',
   success:function (weatherdata){
 // img insert
 
