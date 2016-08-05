@@ -80,7 +80,7 @@ ul {
   </div>
 <script id="jsbin-javascript">
 // ---
-
+$(document).ready(function(){
 $.ajax({
   url: "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651b71a3982edfcfb47a2e1852a84b",
   cache: false,
@@ -102,7 +102,7 @@ document.getElementById('here').innerHTML = weatherdata.name;
 
 }
 });
-
+ });
 
 // 現在時刻
 setInterval(function(){
