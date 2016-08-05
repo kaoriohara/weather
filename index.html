@@ -7,7 +7,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css">
-  
+  <script src="jquery.xdomainajax.js" type="text/javascript"></script>
   <title>weather api data</title>
 <style id="jsbin-css">
 @font-face {
@@ -81,7 +81,7 @@ ul {
 
 $.ajax({
   url: "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651b71a3982edfcfb47a2e1852a84b",
-  cache: false,
+  cache: true,
     dataType:'jsonp',
   success:function (weatherdata){
 // img insert
