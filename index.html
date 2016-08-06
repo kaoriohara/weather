@@ -79,31 +79,41 @@ ul {
 </div>
   </div>
 <script id="jsbin-javascript">
-// ---
-$(document).ready(function(){
+
+var url = 'http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651b71a3982edfcfb47a2e1852a84b';
+
 $.ajax({
-  url: "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651b71a3982edfcfb47a2e1852a84b",
-  cache: false,
-  dataType:"jsonp",
-    crossDomain: true,
-  success:function (weatherdata){
-// img insert
-
-var img = document.createElement('img');
-img.src = "img/"+weatherdata.weather[0].icon+".png";
-// img.src = "http://openweathermap.org/img/w/"+weatherdata.weather[0].icon+".png";
-img.alt = weatherdata.weather[0].main;
-document.getElementById('icon').appendChild(img);
-
-// ＝摂氏＋＝K
-document.getElementById('temp').innerHTML = Math.floor(weatherdata.main.temp - 273.15);
-
-// 位置
-document.getElementById('here').innerHTML = weatherdata.name;
-
-}
+  url,
+  crossDomain: true,
+  success: function(res) {
+    console.log(res);
+  }
 });
- });
+// ---
+// $(document).ready(function(){
+// $.ajax({
+//   url: "http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651b71a3982edfcfb47a2e1852a84b",
+//   cache: false,
+//   dataType:"jsonp",
+//     crossDomain: true,
+//   success:function (weatherdata){
+// // img insert
+
+// var img = document.createElement('img');
+// img.src = "img/"+weatherdata.weather[0].icon+".png";
+// // img.src = "http://openweathermap.org/img/w/"+weatherdata.weather[0].icon+".png";
+// img.alt = weatherdata.weather[0].main;
+// document.getElementById('icon').appendChild(img);
+
+// // ＝摂氏＋＝K
+// document.getElementById('temp').innerHTML = Math.floor(weatherdata.main.temp - 273.15);
+
+// // 位置
+// document.getElementById('here').innerHTML = weatherdata.name;
+
+// }
+// });
+//  });
 
 // 現在時刻
 setInterval(function(){
