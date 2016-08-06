@@ -86,10 +86,26 @@ $.ajax({
   url,
    dataType: 'jsonp', 
   crossDomain: true,
+  cache: false,
   success: function(res) {
-    console.log(res);
-  }
+    console.log(res);success:function (weatherdata){
+// // img insert
+
+var img = document.createElement('img');
+img.src = "img/"+weatherdata.weather[0].icon+".png";
+// img.src = "http://openweathermap.org/img/w/"+weatherdata.weather[0].icon+".png";
+img.alt = weatherdata.weather[0].main;
+document.getElementById('icon').appendChild(img);
+
+// ＝摂氏＋＝K
+document.getElementById('temp').innerHTML = Math.floor(weatherdata.main.temp - 273.15);
+
+// 位置
+document.getElementById('here').innerHTML = weatherdata.name;
+
+}
 });
+ });
 // ---
 // $(document).ready(function(){
 // $.ajax({
