@@ -84,6 +84,7 @@ var url = 'http://api.openweathermap.org/data/2.5/weather?q=Tokyo,jp&appid=23651
 
 $.ajax({
   url,
+   dataType: 'jsonp', 
   crossDomain: true,
   success: function(res) {
     console.log(res);
